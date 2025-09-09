@@ -5,3 +5,7 @@ phase01/DSA-gemini/.env
 phase01/AI-agent-gemini/node_modules/
 phase01/AI-agent-gemini/.env
 
+
+phase01/gen-ai/Phi-3-mini-4k-instruct
+phase01/gen-ai/myvenv
+
