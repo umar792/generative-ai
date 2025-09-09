@@ -1,0 +1,27 @@
+{
+  "name": "cursorai",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node --loader ts-node/esm index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@google/genai": "^1.18.0",
+    "dotenv": "^17.2.2",
+    "readline-sync": "^1.4.10",
+    "ts-node": "^10.9.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.1",
+    "@types/readline-sync": "^1.4.8",
+    "typescript": "^5.9.2"
+  }
+}

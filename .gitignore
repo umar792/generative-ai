@@ -9,3 +9,6 @@ phase01/AI-agent-gemini/.env
 phase01/gen-ai/Phi-3-mini-4k-instruct
 phase01/gen-ai/myvenv
 
+phase01/cursorAi/node_modules/
+phase01/cursorAi/.env
+
