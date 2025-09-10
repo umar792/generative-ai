@@ -11,7 +11,7 @@ import { systemInstruction } from "./systemInstruction.js";
 import dotenv from "dotenv";
 dotenv.config()
 
-
+console.log(process.env.KEY)
 const asyncPromisify = promisify(exec)
 const ai = new GoogleGenAI({ apiKey: process.env.KEY });
 interface History {
@@ -27,7 +27,7 @@ const history:History[] = []
 
 const executeCommands = async ({command}:{command:string})=>{
       try {
-       console.log("command")
+       console.log(command , "command===========================>")
       // @ts-ignore
        const {stdout , stderr} = await asyncPromisify(command);
 
@@ -46,13 +46,13 @@ const executeCommands = async ({command}:{command:string})=>{
 
 const execCommandDeclaration = {
     name : "executeCommands",
-    description : "Execute a shell command on the system and return its output or error details.",
+    description : "Execute a single terminal/shell command. A command can be to create a folder, file, write on a file, edit the file or delete the file",
     parameters : {
         type : "OBJECT",
         properties :{
             command : {
                 type : "STRING",
-                description : "The shell command to be executed, e.g., 'ls', 'mkdir test', or 'node index.js'."
+                description : 'It will be a single terminal command. Ex: "mkdir calculator"'
             },
         },
         required : ["command"]
@@ -74,20 +74,20 @@ const aiAgent = async (prompt:string)=>{
         const response = await ai.models.generateContent({
             model: "gemini-2.5-flash",
             contents : history,
+            systemInstruction : systemInstruction,
             config : {
-                systemInstruction : systemInstruction,
                 tools : [{
                     // @ts-ignore
                     functionDeclarations : [execCommandDeclaration]
                 }]
             }
+            
         })
-
         if(response.functionCalls && response.functionCalls.length > 0){
 
             for(let i=0; i< response.functionCalls?.length; i++){
                 const {name,args} = response.functionCalls[i];
-                console.log(name,args)
+                console.log(name)
                 // @ts-ignore
                 const takeFunc = funcCall[name]
                 const result = await takeFunc(args)
@@ -127,7 +127,6 @@ const aiAgent = async (prompt:string)=>{
 
 const main = async ()=>{
     const userPrompt = readlineSync.question("Ask any thing: ")
-    console.log(userPrompt)
     await aiAgent(userPrompt);
     main()
 }
