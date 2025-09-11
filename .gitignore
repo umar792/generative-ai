@@ -11,4 +11,12 @@ phase01/gen-ai/myvenv
 
 phase01/cursorAi/node_modules/
 phase01/cursorAi/.env
+phase01/cursorAi/course-selling-website/
+
+
+phase01/gen-ai/.env
+
+phase01/RAG/node_modules/
+phase01/RAG/.env
+
 
