@@ -91,6 +91,7 @@ const aiAgent = async (prompt:string)=>{
                 // @ts-ignore
                 const takeFunc = funcCall[name]
                 const result = await takeFunc(args)
+                
                 history.push({
                     role :"model",
                     parts: [{
