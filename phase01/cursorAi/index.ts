@@ -129,6 +129,6 @@ const aiAgent = async (prompt:string)=>{
 const main = async ()=>{
     const userPrompt = readlineSync.question("Ask any thing: ")
     await aiAgent(userPrompt);
-    main()
+    
 }
 main()
