@@ -22,3 +22,7 @@ phase01/RAG/.env
 
 phase02/Chat/node_modules
 phase02/Chat/.env
+
+phase02/RAG-debugger/node_modules
+phase02/RAG-debugger/.env
+
