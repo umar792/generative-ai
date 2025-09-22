@@ -15,7 +15,7 @@ export const fetchVectors = async (optimizePrompt:string)=>{
 
     //connect pinecone
     const pinecone = new Pinecone({ apiKey: process.env.PINECONE_API_KEY! });
-    const pineconeIndex = pinecone.Index(process.env.PINECONE_INDEX_NAME!); 
+    const pineconeIndex = pinecone.Index(process.env.nodejs!); 
 
     const result = await pineconeIndex.query({
         topK : 3,

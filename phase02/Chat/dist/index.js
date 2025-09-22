@@ -50,11 +50,6 @@ const aiAgent = async (prompt, sysPrompt, useTool) => {
                 tools: useTool ? [executeCommandDeclaration] : undefined,
                 tool_choice: "auto"
             });
-            console.log(`
-        -----------------------------------------------------------------------------------------------------------------
-        \n ${JSON.stringify(res)} 
-        \n
-         ------------------------------------------------------------------------------------------------------- \n`);
             if (res.usage) {
                 console.log(`${attempt} token usage ${res.usage.total_tokens}`);
                 tokenCount += res.usage.total_tokens;

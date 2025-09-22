@@ -9,7 +9,6 @@ import { executeCommand } from "./tools/executeCommand.js";
 import { executeCommandDeclaration } from "./toolDeclaration.js";
 import { fetchVectors } from "./helpers/fetchVectors.js";
 import { classifyQuery } from "./helpers/classifyQuery.js";
-import { json } from "stream/consumers";
 
 const rl = readline.createInterface({
   input: process.stdin,
@@ -64,11 +63,7 @@ const aiAgent = async (prompt: string , sysPrompt:string , useTool:boolean) => {
           tools : useTool ? [executeCommandDeclaration] : undefined,
           tool_choice : "auto"
       });
-      console.log(`
-        -----------------------------------------------------------------------------------------------------------------
-        \n ${JSON.stringify(res)} 
-        \n
-         ------------------------------------------------------------------------------------------------------- \n`)
+
       if (res.usage) {
         console.log(`${attempt} token usage ${res.usage.total_tokens}`)
         tokenCount += res.usage.total_tokens;

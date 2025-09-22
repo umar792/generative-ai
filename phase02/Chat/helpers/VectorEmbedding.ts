@@ -4,11 +4,16 @@ import { CharacterTextSplitter } from "langchain/text_splitter";
 import { GoogleGenerativeAIEmbeddings } from "@langchain/google-genai";
 import { Pinecone } from "@pinecone-database/pinecone";
 import { PineconeStore } from "@langchain/pinecone";
+import path from "path"
+import { fileURLToPath } from "url";
+
 
 dotenv.config();
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+console.log(path.join(__dirname, "prompts", "Nodejs.txt"))
 const vectorEmbedding = async () => {
-  const text = fs.readFileSync("backend_assistant_knowledge.txt", "utf-8");
+  const text = fs.readFileSync(path.join(__dirname, "../" ,"Prompts", "Nodejs.txt"), "utf-8");
 
   const textSplitter = new CharacterTextSplitter({
     chunkSize: 200,
@@ -26,7 +31,7 @@ const vectorEmbedding = async () => {
     apiKey: process.env.PINECONE_API_KEY!,
   });
 
-  const indexName = process.env.PINECONE_INDEX_NAME!;
+  const indexName = process.env.nodejs!;
   console.log("Using Pinecone index:", indexName);
 
   const pineconeIndex = pinecone.Index(indexName);
@@ -41,4 +46,4 @@ const vectorEmbedding = async () => {
   console.log("Knowledge file indexed in Pinecone ✅");
 };
 
-// vectorEmbedding();
+vectorEmbedding();
