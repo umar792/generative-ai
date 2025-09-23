@@ -26,3 +26,11 @@ phase02/Chat/.env
 phase02/RAG-debugger/node_modules
 phase02/RAG-debugger/.env
 
+
+phase02/LangChain/venv
+phase02/LangChain/.env
+
+phase02/MCP/venv
+phase02/MCP/.env
+
+
